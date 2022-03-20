@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
 public class CrystalBehaviour : MonoBehaviour
 {
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -17,5 +16,13 @@ public class CrystalBehaviour : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.tag.Equals("Player")) {
+            PlayerBehaviour pd = collision.gameObject.GetComponent<PlayerBehaviour>();
+            if (pd != null)
+                pd.CallEnnemyCollision();
+        }
     }
 }
